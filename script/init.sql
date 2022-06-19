@@ -17,11 +17,11 @@ CREATE TABLE todos (
 );
 
 INSERT INTO users (age, name, role, email, password) VALUES 
-    (10, 'sakamoto', 'engineer', 'vofxx@icloud.com',     'password'),
-    (20, 'sakata',   'engineer', 'sakata@exmaple.com',   'password'),
-    (30, 'sakuma',   'pm',       'sakuma@exmaple.com',   'password'),
-    (40, 'sasaki',   'engineer', 'sakamoto@exmaple.com', 'password'),
-    (50, 'sato',     'sales',    'sato@exmaple.com',     'password');
+    (10, 'sakamoto', 'USER',   'vofxx@icloud.com',     'password'),
+    (20, 'sakata',   'MASTER', 'sakata@exmaple.com',   'password'),
+    (30, 'sakuma',   'USER',   'sakuma@exmaple.com',   'password'),
+    (40, 'sasaki',   'USER',   'sakamoto@exmaple.com', 'password'),
+    (50, 'sato',     'ADMIN',  'sato@exmaple.com',     'password');
 
 INSERT INTO todos (uid, title) VALUES 
     (1, 'coding'),
