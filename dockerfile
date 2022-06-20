@@ -7,7 +7,8 @@ WORKDIR /api
 COPY package*.json /api/
 RUN npm ci
 
-ENV PORT=9001
+ENV PORT=9000
+ENV DB_PORT=5432
 ENV DB_HOST='ts-database'
 ENV DB_NAME='ts-database'
 ENV DB_USER='postgres'

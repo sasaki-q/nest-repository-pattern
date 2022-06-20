@@ -3,9 +3,9 @@ build:
 	docker compose build
 
 up:
-	echo "アプリケーション起動"
+	echo "up"
 	docker compose up
 
 rm:
 	echo "rm"
-	docker compose rm $(ctn)
+	docker rm nest_api_container
