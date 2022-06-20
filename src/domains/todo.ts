@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, JoinColumn } from "typeorm"
-import { User } from "./user"
+import { User } from "domains/user"
 
 @Entity({name: "todos"})
 export class Todo {

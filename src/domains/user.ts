@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToMany, JoinColumn } from "typeorm"
-import { Todo } from "./todo"
+import { Todo } from "domains/todo"
 
 export type Role = "MASTER" | "ADMIN" | "USER"
 
