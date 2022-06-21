@@ -1,13 +1,16 @@
-import { Controller, Get, InternalServerErrorException } from "@nestjs/common";
+import { Controller, Get, Inject, InternalServerErrorException } from "@nestjs/common";
 import { User } from "domains/user";
-import { UserUsecaseImpl } from "usecases/user";
-import { UserFactoryImpl } from "usecases/user/user.factory.impl";
+import { MyUsecase } from "usecases/usecase";
+import { MyFactory } from "factories/factory";
 
 @Controller("/user")
 export class UserController {
     constructor(
-        private readonly userUsecase: UserUsecaseImpl,
-        private readonly userFactory: UserFactoryImpl,
+        @Inject(MyUsecase<User>)
+        private readonly userUsecase: MyUsecase<User>,
+
+        @Inject(MyFactory<User>)
+        private readonly userFactory: MyFactory<User>,
     ){}
 
     @Get("/")

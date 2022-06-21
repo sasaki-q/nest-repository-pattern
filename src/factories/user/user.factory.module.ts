@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
 import { User } from "domains/user";
+import { MyFactory } from "factories/factory";
 import { UserRepositoryModule } from "repositories/user";
-import { MyUsecase } from "usecases/usecase";
-import { UserUsecaseImpl } from "./user.usecase.impl";
+import { UserFactoryImpl } from "./user.factory.impl";
 
 @Module({
     imports: [
@@ -10,13 +10,13 @@ import { UserUsecaseImpl } from "./user.usecase.impl";
     ],
     providers: [
         {
-            provide: MyUsecase<User>,
-            useClass: UserUsecaseImpl,
-        }
+            provide: MyFactory<User>,
+            useClass: UserFactoryImpl,
+        },
     ],
     exports: [
-        MyUsecase<User>,
+        MyFactory<User>,
     ]
 })
 
-export class UserUsecaseModule{}
+export class UserFactoryModule{}
