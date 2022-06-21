@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { User } from "domains/user";
-import { UserRepository } from "./user.repository";
+import { MyRepository } from "repositories/repository";
 import { UserRepositoryImpl } from "./user.repository.impl";
 
 @Module({
@@ -12,12 +12,12 @@ import { UserRepositoryImpl } from "./user.repository.impl";
     ],
     providers: [
         {
-            provide: UserRepository,
+            provide: MyRepository<User>,
             useClass: UserRepositoryImpl,
         }
     ],
     exports: [
-        UserRepository
+        MyRepository<User>
     ]
 })
 

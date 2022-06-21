@@ -1,10 +1,15 @@
+import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "domains/user";
-import { UserRepository } from "./user.repository";
+import { MyRepository } from "repositories/repository";
+import { Repository } from "typeorm";
 
-export class UserRepositoryImpl implements UserRepository {
-    constructor(){}
+export class UserRepositoryImpl implements MyRepository<User> {
+    constructor(
+        @InjectRepository(User)
+        private readonly repository: Repository<User>
+    ){}
 
-    async getUsers(): Promise<User[]> {
-        return []
+    async getAll(): Promise<User[]> {
+        return await this.repository.find();
     }
 }
