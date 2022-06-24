@@ -7,6 +7,8 @@ WORKDIR /api
 COPY package*.json /api/
 RUN npm ci
 
+COPY ./ /api/
+
 ENV PORT=9000
 ENV DB_PORT=5432
 ENV DB_HOST='ts-database'
