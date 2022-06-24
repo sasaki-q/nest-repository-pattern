@@ -1,7 +1,8 @@
-import { Controller, Get, Inject, InternalServerErrorException } from "@nestjs/common";
+import { Body, Controller, Get, Inject, InternalServerErrorException, Post } from "@nestjs/common";
 import { User } from "domains/user";
 import { MyUsecase } from "usecases/usecase";
 import { MyFactory } from "factories/factory";
+import { CreateUserDto } from "dtos/user";
 
 @Controller("/user")
 export class UserController {
@@ -20,6 +21,17 @@ export class UserController {
         } catch(err) {
             console.log("DEBUG error message === ", err)
             
+            throw new InternalServerErrorException()
+        }
+    }
+
+    @Post("/")
+    async createUser(@Body() dto: CreateUserDto): Promise<any> {
+        const { age, name, role, email, password } = dto;
+        try{
+            return "success"
+        }catch(err){
+            console.log("DEBUG error message === ", err)
             throw new InternalServerErrorException()
         }
     }

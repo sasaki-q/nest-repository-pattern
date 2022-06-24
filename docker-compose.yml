@@ -11,6 +11,10 @@ services:
     restart: always
     depends_on:
       - ts-database
+    volumes:
+      - type: bind
+        source: .
+        target: /api
 
   ts-database:
     image: postgres:14-alpine
