@@ -1,3 +1,3 @@
 export abstract class MyFactory<T> {
-    abstract create: () => T;
+    abstract create: <D>(dto: D) => T;
 }

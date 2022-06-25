@@ -2,14 +2,8 @@ import { Body, Controller, Get, Inject, InternalServerErrorException, Post } fro
 import { User } from "domains/user";
 import { MyUsecase } from "usecases/usecase";
 import { MyFactory } from "factories/factory";
-import { CreateUserDto } from "dtos/user";
-import { CreateTodoDto } from "dtos/todo";
+import { TransactionDto } from "dtos/user";
 import { Todo } from "domains/todo";
-
-type TransactionDto = {
-    user: CreateUserDto,
-    todo: CreateTodoDto,
-}
 
 @Controller("/user")
 export class UserController {
@@ -36,8 +30,11 @@ export class UserController {
     }
 
     @Post("/")
-    async createUser(@Body() { user, todo }: TransactionDto): Promise<any> {
+    async createUser(@Body() dto : TransactionDto): Promise<any> {
+        const { user, todo } = dto;
         try{
+            const createdTodo: Todo = this.todoFactory.create(todo)
+            console.log("DEBUG created todo === ", createdTodo)
             return "success"
         }catch(err){
             console.log("DEBUG error message === ", err)
