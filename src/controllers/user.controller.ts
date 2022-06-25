@@ -3,6 +3,13 @@ import { User } from "domains/user";
 import { MyUsecase } from "usecases/usecase";
 import { MyFactory } from "factories/factory";
 import { CreateUserDto } from "dtos/user";
+import { CreateTodoDto } from "dtos/todo";
+import { Todo } from "domains/todo";
+
+type TransactionDto = {
+    user: CreateUserDto,
+    todo: CreateTodoDto,
+}
 
 @Controller("/user")
 export class UserController {
@@ -12,6 +19,9 @@ export class UserController {
 
         @Inject(MyFactory<User>)
         private readonly userFactory: MyFactory<User>,
+
+        @Inject(MyFactory<Todo>)
+        private readonly todoFactory: MyFactory<Todo>
     ){}
 
     @Get("/")
@@ -26,8 +36,7 @@ export class UserController {
     }
 
     @Post("/")
-    async createUser(@Body() dto: CreateUserDto): Promise<any> {
-        const { age, name, role, email, password } = dto;
+    async createUser(@Body() { user, todo }: TransactionDto): Promise<any> {
         try{
             return "success"
         }catch(err){

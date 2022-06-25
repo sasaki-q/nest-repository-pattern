@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { UserController } from 'controllers/user.controller';
 import { UserUsecaseModule } from 'usecases/user';
 import { UserFactoryModule } from 'factories/user';
+import { TodoFactoryModule } from 'factories/todo';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { UserFactoryModule } from 'factories/user';
     }),
     UserUsecaseModule,
     UserFactoryModule,
+    TodoFactoryModule,
   ],
   controllers: [AppController, UserController],
   providers: [],
