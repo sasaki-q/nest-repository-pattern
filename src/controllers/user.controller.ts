@@ -1,9 +1,10 @@
 import { Body, Controller, Get, Inject, InternalServerErrorException, Post } from "@nestjs/common";
 import { User } from "domains/user";
 import { MyUsecase } from "usecases/usecase";
-import { MyFactory } from "factories/factory";
 import { TransactionDto } from "dtos/user";
 import { Todo } from "domains/todo";
+import { UserFactory } from "factories/user";
+import { TodoFactory } from "factories/todo";
 
 @Controller("/user")
 export class UserController {
@@ -11,11 +12,8 @@ export class UserController {
         @Inject(MyUsecase<User>)
         private readonly userUsecase: MyUsecase<User>,
 
-        @Inject(MyFactory<User>)
-        private readonly userFactory: MyFactory<User>,
-
-        @Inject(MyFactory<Todo>)
-        private readonly todoFactory: MyFactory<Todo>
+        private readonly userFactory: UserFactory,
+        private readonly todoFactory: TodoFactory,
     ){}
 
     @Get("/")
@@ -33,9 +31,10 @@ export class UserController {
     async createUser(@Body() dto : TransactionDto): Promise<any> {
         const { user, todo } = dto;
         try{
+            const createdUser: User = this.userFactory.create(user)
             const createdTodo: Todo = this.todoFactory.create(todo)
-            console.log("DEBUG created todo === ", createdTodo)
-            return "success"
+
+            return { "user": createdUser, "todo": createdTodo }
         }catch(err){
             console.log("DEBUG error message === ", err)
             throw new InternalServerErrorException()
