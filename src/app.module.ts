@@ -5,8 +5,7 @@ import { TypeOrmConfigService } from 'config/orm';
 import { AppController } from './app.controller';
 import { UserController } from 'controllers/user.controller';
 import { UserUsecaseModule } from 'usecases/user';
-import { UserFactoryModule } from 'factories/user';
-import { TodoFactoryModule } from 'factories/todo';
+import { TodoUsecaseModule } from 'usecases/todo/todo.usecase.module';
 
 @Module({
   imports: [
@@ -18,8 +17,7 @@ import { TodoFactoryModule } from 'factories/todo';
       useClass: TypeOrmConfigService,
     }),
     UserUsecaseModule,
-    UserFactoryModule,
-    TodoFactoryModule,
+    TodoUsecaseModule,
   ],
   controllers: [AppController, UserController],
   providers: [],

@@ -3,7 +3,7 @@ import { Todo } from "domains/todo";
 import { CreateTodoDto } from "dtos/todo";
 
 @Injectable()
-export class TodoFactory {
+export class TodoFactoryService {
     create(dto: CreateTodoDto): Todo {
         const todo = new Todo()
         todo.uid = dto.uid;

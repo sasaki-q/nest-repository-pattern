@@ -1,19 +1,17 @@
-import { Body, Controller, Get, Inject, InternalServerErrorException, Post } from "@nestjs/common";
+import { Body, Controller, Get, InternalServerErrorException, Post } from "@nestjs/common";
 import { User } from "domains/user";
-import { MyUsecase } from "usecases/usecase";
 import { TransactionDto } from "dtos/user";
 import { Todo } from "domains/todo";
-import { UserFactory } from "factories/user";
-import { TodoFactory } from "factories/todo";
+import { UserFactoryService, UserUsecaseService } from "usecases/user";
+import { TodoFactoryService } from "usecases/todo/todo.factory.service";
 
 @Controller("/user")
 export class UserController {
     constructor(
-        @Inject(MyUsecase<User>)
-        private readonly userUsecase: MyUsecase<User>,
+        private readonly userFactory: UserFactoryService,
+        private readonly userUsecase: UserUsecaseService,
 
-        private readonly userFactory: UserFactory,
-        private readonly todoFactory: TodoFactory,
+        private readonly todoFactory: TodoFactoryService,
     ){}
 
     @Get("/")

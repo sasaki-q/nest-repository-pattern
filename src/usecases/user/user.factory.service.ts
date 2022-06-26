@@ -3,7 +3,7 @@ import { User } from "domains/user";
 import { CreateUserDto } from "dtos/user";
 
 @Injectable()
-export class UserFactory {
+export class UserFactoryService {
     create(dto: CreateUserDto): User {
         const user = new User();
         user.age = dto.age;
